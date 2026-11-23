@@ -1,5 +1,9 @@
 # machine-learning-privacy-analysis
 
+**What:** Group project: a blood pressure model trained on health data, protected with k-anonymity, l-diversity, t-closeness and differential privacy, then attacked.  
+**Result:** None of the methods gave strong protection against the attacks; t-closeness kept the predictions closest to the original model.  
+**Stack:** Python, TensorFlow/Keras, PyTorch, scikit-learn
+
 Group project with Miroslava Macejkova and Rakhmatillokhon Khoshimov (June 2024). We trained
 a neural network that predicts blood pressure from health data, protected the data or the
 predictions with different privacy methods, and then attacked the model to see how much
