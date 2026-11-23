@@ -33,33 +33,20 @@ the predictions) and a model inversion attack.
 
 ## Results
 
-Example predictions for one person with true blood pressure 110/72:
+For one person with a true blood pressure of 110/72, the model trained on the original data
+predicted 117/72. Trained on the anonymized versions it predicted 118/75 (t-closeness),
+106/68 (m-invariance) and 102/64 (l-diversity). With k-anonymity it predicted 663/420, so
+something clearly broke there.
 
-| training data | predicted |
-|---|---|
-| original | 117 / 72 |
-| k-anonymity | 663 / 420 |
-| l-diversity | 102 / 64 |
-| m-invariance | 106 / 68 |
-| t-closeness | 118 / 75 |
+In the inversion attack, a lower error means the attacker got closer to the real values. The
+mean absolute error was 11.5 (systolic) and 6.9 (diastolic) for t-closeness, 16.9 and 10.3
+for m-invariance, 17.0 and 10.4 for l-diversity, and 18.1 and 10.8 for k-anonymity.
 
-Inversion attack, mean absolute error of the inferred values (lower = the attacker gets
-closer to the real values):
-
-| data | MAE systolic | MAE diastolic |
-|---|---|---|
-| k-anonymity | 18.1 | 10.8 |
-| l-diversity | 17.0 | 10.4 |
-| m-invariance | 16.9 | 10.3 |
-| t-closeness | 11.5 | 6.9 |
-
-Reconstruction attack on the DP predictions (MSE, higher = better privacy):
-
-| ε | systolic, no noise | systolic, noisy | diastolic, no noise | diastolic, noisy |
-|---|---|---|---|---|
-| 0.05 | 320.2 | 276.8 | 103.8 | 84.5 |
-| 0.1 | 320.3 | 515.5 | 103.8 | 311.8 |
-| 1 | 320.3 | 325.9 | 104.0 | 105.1 |
+In the reconstruction attack on the differentially private predictions, a higher error means
+better privacy. Only ε = 0.1 made a clear difference: the error went from 320.3 to 515.5 for
+systolic and from 103.8 to 311.8 for diastolic. With ε = 1 it barely moved (320.3 to 325.9,
+104.0 to 105.1), and with ε = 0.05 the noisy predictions were even easier to reconstruct
+(320.2 to 276.8, 103.8 to 84.5).
 
 ## What we found
 
